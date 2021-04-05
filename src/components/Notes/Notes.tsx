@@ -1,22 +1,42 @@
+//dependencies
 import React from 'react'
+import { Paper } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+
+//import components
+import Title from './NotesItems/Title'
+import Description from './NotesItems/Description'
+// styling
+
+const useStyles = makeStyles({
+    note: {
+        width: '600px',
+        height: '150px',
+        backgroundColor: '#FFFF99',
+    }
+    
+})
+
 
 interface Props {
-    
+
 }
 
 const Notes = (props: Props) => {
-    const notes = [
-        {
-            id: 1,
-            title: 'react',
-            description: 'react is javascript front-end library'
-        }
-    ]
+    const classes = useStyles()
+    // import styles
+    
+
     return (
-        <div>
-            
-        </div>
+            <Paper className={classes.note} elevation={3}>
+                <Title/>
+                
+
+            </Paper>
     )
 }
+
+
+
 
 export default Notes

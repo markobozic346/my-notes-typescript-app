@@ -13,8 +13,9 @@ import Tags from './NotesItems/Tags'
 const useStyles = makeStyles({
     note: {
         margin: '20px auto 20px auto',
-        paddingLeft: '10px',
-        width: '600px',
+        padding: '10px 10px 10px 10px',
+        maxWidth: '600px',
+        minWidth: '300px',
         height: '150px',
         backgroundColor: '#FFFF99',
     }

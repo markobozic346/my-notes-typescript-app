@@ -16,8 +16,7 @@ const Description = (props: Props) => {
     const classes = useStyles()
     return (
         <Typography className={classes.description}>
-            React component is independed and reusable piece of code, they work like javascript
-            functions, but they return HTML via render() method
+            React component is independed and reusable piece of code, they work like javascript functions, but they return HTML via render() method
         </Typography>
     )
 }

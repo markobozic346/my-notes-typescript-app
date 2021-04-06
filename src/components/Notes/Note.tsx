@@ -12,7 +12,7 @@ import Tags from './NotesItems/Tags'
 
 const useStyles = makeStyles({
     note: {
-        margin: 'auto auto',
+        margin: '20px auto 20px auto',
         paddingLeft: '10px',
         width: '600px',
         height: '150px',

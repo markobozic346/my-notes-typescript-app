@@ -7,8 +7,6 @@ const useStyles = makeStyles({
     tags: {
         color: 'gray',
         fontSize: '0.75rem',
-        
-
     }
 })
 

@@ -4,10 +4,10 @@ import { Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 //import components
-import Title from './NotesItems/Title'
-import Description from './NotesItems/Description'
-import Settings from './NotesItems/Settings'
-import Tags from './NotesItems/Tags'
+import Title from './NoteItems/Title'
+import Description from './NoteItems/Description'
+import Settings from './NoteItems/Settings'
+import Tags from './NoteItems/Tags'
 // styling
 
 const useStyles = makeStyles({
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         margin: '20px auto 20px auto',
         padding: '10px 10px 10px 10px',
         maxWidth: '600px',
-        minWidth: '300px',
+        minWidth: '280px',
         height: '150px',
         backgroundColor: '#FFFF99',
     }

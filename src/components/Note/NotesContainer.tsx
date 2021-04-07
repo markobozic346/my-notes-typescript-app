@@ -4,7 +4,7 @@ import Note from './Note'
 const useStyles = makeStyles({
     
     notesContainer: {
-        
+        margin: '0 auto 0 auto',
     }
 })
 interface Props {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {makeStyles} from '@material-ui/styles';
-
+import {Button} from '@material-ui/core';
 const useStyles = makeStyles({
     addNote: {
         
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     plusIcon: {
         margin: '0',
         textAlign: 'center',
-        padding: '10px',
+        padding: '0 10px 0 10px',
         fontSize: '4rem',
         width: 'fit-content',
         hight: 'fit-content',
@@ -33,7 +33,7 @@ const AddNote = (props: Props) => {
     const classes = useStyles();
     return (
         <div className={classes.addNote}>
-            <p className={classes.plusIcon}>➕</p>
+            <Button className={classes.plusIcon}>➕</Button>
             
         </div>
     )

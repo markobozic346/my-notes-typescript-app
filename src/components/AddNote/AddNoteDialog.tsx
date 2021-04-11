@@ -8,15 +8,39 @@ import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles({
-    something: {
-        background: 'telow'
+
+    inputFields: {
+        maxWidth: '600px',
+        minWidth: '300px',
+        margin: '0 10px 0 10px',
+        borderColor: '#FFFF99',
+        '& label.Mui-focused': {
+            color: 'black',
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: '#d6cd1a',
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: '#d6cd1a',
+            },
+            '&:hover fieldset': {
+                borderColor: '#d6cd1a',
+            },
+            '&.Mui-focused fieldset': {
+                borderColor: '#d6cd1a',
+            },
+        }
+    },
+    dialogCenterContent:{
+        textAlign: 'center',
     }
 });
 
 interface Props {
-open: boolean,
-handleOpen: () => void,
-handleClose: () => void,
+    open: boolean,
+    handleOpen: () => void,
+    handleClose: () => void,
 
 }
 
@@ -29,17 +53,17 @@ const AddNoteDialog = (props: Props) => {
     return (
         <div>
             <Dialog open={props.open} >
-                <DialogTitle>Add New Note</DialogTitle>
-                <DialogContent >
-                    <DialogContentText>Ovde ide nesto ne znam sta</DialogContentText>
+                <DialogTitle className={classes.dialogCenterContent}>Add New Note</DialogTitle>
+                <DialogContent className={classes.dialogCenterContent} >
+                    <DialogContentText>Fill fields with details</DialogContentText>
 
-                    <TextField label='note title' />
-                    <TextField label='tags' />
-                    <TextField label='description' />
+                    <TextField className={classes.inputFields} label='note title' />
+                    <TextField className={classes.inputFields} label='tags' />
+                    <TextField className={classes.inputFields} label='description' />
                 </DialogContent>
 
                 <DialogActions>
-                    <Button>Edit</Button>
+                    <Button>Add</Button>
                     <Button onClick={props.handleClose}>Close</Button>
                 </DialogActions>
 

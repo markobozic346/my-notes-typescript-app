@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import AddNoteDialog from './AddNoteDialog'
 
 const useStyles = makeStyles({
     addNote: {
@@ -30,15 +26,13 @@ const useStyles = makeStyles({
             backgroundColor: '#b0a80c',
         }
     },
-    dialogBox: {
-        color: '#FFFF99',
-    }
+    
 })
 interface Props {
 
 }
 
-const AddNote: React.FC = (props: Props) => {
+const AddNoteBtn: React.FC = (props: Props) => {
 
     const [open, setOpen] = useState<true | false>(false)
     const classes = useStyles();
@@ -53,25 +47,9 @@ const AddNote: React.FC = (props: Props) => {
         <div className={classes.addNote}>
             {/* on click opens dialog box */}
             <Button className={classes.plusIcon} onClick={handleOpen}>➕</Button>
-            <Dialog open={open} >
-                <DialogTitle>Add New Note</DialogTitle>
-                <DialogContent >
-                    <DialogContentText>Ovde ide nesto ne znam sta</DialogContentText>
-
-                    <TextField label='note title' />
-                    <TextField label='tags' />
-                    <TextField label='description' />
-                </DialogContent>
-
-                <DialogActions>
-                    <Button>Edit</Button>
-                    <Button onClick={handleClose}>Close</Button>
-                </DialogActions>
-
-            </Dialog>
-
+            <AddNoteDialog open={open} handleOpen={handleOpen} handleClose={handleClose}/>
         </div>
     )
 }
 
-export default AddNote
+export default AddNoteBtn

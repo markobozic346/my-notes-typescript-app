@@ -2,7 +2,7 @@ import React from 'react';
 import NotesContainer from './components/Note/NotesContainer';
 import Logo from './components/Logo/Logo'
 import Search from './components/Search/Search'
-import AddNote from './components/AddNote/AddNote'
+import AddNoteBtn from './components/AddNote/AddNoteBtn'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -19,7 +19,7 @@ function App() {
       <Logo/>
       <Search/>
       <NotesContainer/>
-      <AddNote/>
+      <AddNoteBtn/>
     </div>
   );
 }

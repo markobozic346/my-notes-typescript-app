@@ -45,11 +45,7 @@ interface Props {
 }
 
 const AddNoteDialog = (props: Props) => {
-    const classes = useStyles({
-        dialogBox: {
-            color: '#FFFF99',
-        }
-    })
+    const classes = useStyles()
     return (
         <div>
             <Dialog open={props.open} >
@@ -58,7 +54,7 @@ const AddNoteDialog = (props: Props) => {
                     <DialogContentText>Fill fields with details</DialogContentText>
 
                     <TextField className={classes.inputFields} label='note title' />
-                    <TextField className={classes.inputFields} label='tags' />
+                    <TextField className={classes.inputFields} label='tags (separate tags with coma)' />
                     <TextField className={classes.inputFields} label='description' />
                 </DialogContent>
 

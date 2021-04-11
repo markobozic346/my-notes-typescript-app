@@ -5,6 +5,8 @@ import Search from './components/Search/Search'
 import AddNoteBtn from './components/AddNote/AddNoteBtn'
 import { makeStyles } from '@material-ui/core/styles'
 
+
+
 const useStyles = makeStyles({
    app:{
     
@@ -12,8 +14,13 @@ const useStyles = makeStyles({
    
 });
 
+
+
 function App() {
   const classes = useStyles();
+
+  
+
   return (
     <div className={classes.app}>
       <Logo/>

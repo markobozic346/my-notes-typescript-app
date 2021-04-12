@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Note from './Note'
 import { useSelector } from 'react-redux'
-import { StateType } from '../../reducers/rootReducer';
+import { StateType } from '../../reducers/noteReducer';
 const useStyles = makeStyles({
 
     notesContainer: {

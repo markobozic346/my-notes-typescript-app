@@ -6,7 +6,11 @@ export interface StateType {
 
 interface ActionType {
     type: string,
-    payload: string | number,
+    payload: {
+        title?: string,
+        tags?: string[],
+        description?: string,
+    }
 }
 const initialState = {
     notes: [{
@@ -23,7 +27,7 @@ const initialState = {
     }
 ]
 }
-export const rootReducer = (state: StateType = initialState, action: ActionType) => {
+export const noteReducer = (state: StateType = initialState, action: ActionType) => {
     switch (action.type) {
         case "ADD_NOTE":
             return state

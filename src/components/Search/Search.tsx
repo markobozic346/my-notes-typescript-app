@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
+import { StringDecoder } from 'node:string_decoder';
 
 const useStyles = makeStyles({
     searchContainer: {
@@ -41,17 +42,34 @@ const useStyles = makeStyles({
     }
 })
 
+
+
+const handleKeywordsChange = (value: String) => {
+
+}
+const handleTagsChange = (value: String) => {
+
+}
+
 interface Props {
 
 }
 
 const Search = (props: Props) => {
     const classes = useStyles();
+
+
+    const [keywords, setKeywords] = useState<String>('');
+    const [tags, setTags] = useState<String[]>([])
+    console.log(keywords);
     return (
         <div className={classes.searchContainer}>
-            <TextField id='standard-basic btn1' label='keywords' className={classes.Input} />
-            <TextField id='standard-basic btn2' label='tags' className={classes.Input} />
-
+            <TextField onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { setKeywords(e.target.value) }}
+                value={keywords}
+                id='standard-basic btn1' label='keywords' className={classes.Input} />
+                
+            <TextField onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { handleTagsChange(e.target.value) }}
+                id='standard-basic btn2' label='tags' className={classes.Input} />
         </div>
     )
 }

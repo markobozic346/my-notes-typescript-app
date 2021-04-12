@@ -6,8 +6,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 const useStyles = makeStyles({
     description: {
         position: 'relative',
-        bottom: '65%',
-        left: '95%'
+        top: '-50%',
+        left: '95%',
     }
 })
 interface Props {

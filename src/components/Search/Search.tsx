@@ -4,13 +4,14 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
     searchContainer: {
+        textAlign: 'center',
         margin: 'auto',
         maxWidth: '600px',
         minWidth: '300px',
     },
     Input: {
         maxWidth: '600px',
-        minWidth: '240px',
+        minWidth: '280px',
         margin: '0 10px 0 10px',
         borderColor: '#FFFF99',
         '& label.Mui-focused': {
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
             },
         }
     },
-    searchBtn:{
+    searchBtn: {
         marginTop: '10px',
         backgroundColor: '#d6cd1a',
         '&:hover': {
@@ -48,9 +49,9 @@ const Search = (props: Props) => {
     const classes = useStyles();
     return (
         <div className={classes.searchContainer}>
-            <TextField id='standard-basic' label='keywords' className={classes.Input} />
-            <TextField id='standard-basic' label='tags' className={classes.Input}/>
-            <Button className={classes.searchBtn}>Search</Button>
+            <TextField id='standard-basic btn1' label='keywords' className={classes.Input} />
+            <TextField id='standard-basic btn2' label='tags' className={classes.Input} />
+
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Typography } from '@material-ui/core'
+import {Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -9,14 +9,14 @@ const useStyles = makeStyles({
 })
 
 interface Props {
-
+description: string,
 }
 
-const Description = (props: Props) => {
+const Description = ({description}: Props) => {
     const classes = useStyles()
     return (
         <Typography className={classes.description}>
-            React component is independed and reusable piece of code, they work like javascript functions, but they return HTML via render() method
+            {description}
         </Typography>
     )
 }

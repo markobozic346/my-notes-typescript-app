@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
@@ -10,14 +10,14 @@ const useStyles = makeStyles({
 })
 
 interface Props {
-
+title: string,
 }
 
-const Title = (props: Props) => {
+const Title = ({title}: Props) => {
     const classes = useStyles()
     return (
         <Typography className={classes.title}>
-            React Components
+            {title}
         </Typography>
     )
 }

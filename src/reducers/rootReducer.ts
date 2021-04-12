@@ -1,6 +1,7 @@
 
+
 export interface StateType {
-    notes: {}[],
+    notes: {id: number, title: string, tags: string[], description: string}[],
 }
 
 interface ActionType {
@@ -8,22 +9,27 @@ interface ActionType {
     payload: string | number,
 }
 const initialState = {
-    notes: [{},{}]
+    notes: [{
+        id: 1,
+        title: 'this is first note',
+        tags: ['react','interview questions'],
+        description: 'this is first note description',
+    }]
 }
 export const rootReducer = (state: StateType = initialState, action: ActionType) => {
     switch (action.type) {
         case "ADD_NOTE":
             return state
-            break;
+            
         case "REMOVE_NOTE": 
         return state
             
-            break;
+           
         case "UPDATE_NOTE":
             return state
-            break;
+            
         default:
             return state
-            break;
+            
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/styles';
-import { Button, TextField } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import AddNoteDialog from './AddNoteDialog'
 
 const useStyles = makeStyles({

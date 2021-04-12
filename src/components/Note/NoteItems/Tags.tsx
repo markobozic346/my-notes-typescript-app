@@ -11,14 +11,14 @@ const useStyles = makeStyles({
 })
 
 interface Props {
-    
+    tags: string[],
 }
 
-const Tags = (props: Props) => {
+const Tags = ({tags}: Props) => {
     const classes = useStyles();
     return (
         <Typography className={classes.tags}>
-            React, Interview Questions
+           {tags.map(tag => (` ${tag}, `))}
         </Typography>
     )
 }

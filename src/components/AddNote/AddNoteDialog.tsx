@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
             },
         }
     },
-    dialogCenterContent:{
+    dialogCenterContent: {
         textAlign: 'center',
     }
 });
@@ -45,6 +45,24 @@ interface Props {
 }
 
 const AddNoteDialog = (props: Props) => {
+    //states
+    const [title, setTitle] = useState<String>('');
+    const [tags, setTags] = useState<String>('');
+    const [description, setDescription] = useState<String>('');
+
+
+    // handle input functions
+    const handleTitleChange = (value: String) => {
+        setTitle(value);
+    }
+
+    const handleTagsChange = (value: String) => {
+        setTags(value);
+    }
+
+    const handleDescriptionChange = (value: String) => {
+        setDescription(value)
+    }
     const classes = useStyles()
     return (
         <div>
@@ -53,9 +71,9 @@ const AddNoteDialog = (props: Props) => {
                 <DialogContent className={classes.dialogCenterContent} >
                     <DialogContentText>Fill fields with details</DialogContentText>
 
-                    <TextField className={classes.inputFields} label='note title' />
-                    <TextField className={classes.inputFields} label='tags (separate tags with coma)' />
-                    <TextField className={classes.inputFields} label='description' />
+                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTitleChange(e.target.value) }} className={classes.inputFields} label='note title' />
+                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTagsChange(e.target.value) }} className={classes.inputFields} label='tags (separate tags with coma)' />
+                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleDescriptionChange(e.target.value) }} className={classes.inputFields} label='description' />
                 </DialogContent>
 
                 <DialogActions>

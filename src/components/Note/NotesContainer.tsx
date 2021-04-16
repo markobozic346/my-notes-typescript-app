@@ -12,16 +12,21 @@ const useStyles = makeStyles({
 interface Props {
 
 }
-
+interface selectorType{
+    noteReducer: StateType
+}
 const NotesContainer = (props: Props) => {
     const classes = useStyles();
 
     // get data from redux store
-    const notes = useSelector<StateType, StateType['notes']>((state) => state.notes)
-    console.log(notes);
+    const notes = useSelector<selectorType, StateType['notes']>((state) => {
+        console.log(state.noteReducer)
+        return state.noteReducer.notes
+    })
+    
     return (
         <div className={classes.notesContainer}>
-             {notes.map((note, index) => (<Note key={index} id={note.id} title={note.title} tags={note.tags} description={note.description} />))} 
+             {notes.map((note, index) => (<Note key={index} id={note.id} title={note.title} tags={note.tags} description={note.description} />))}  
 
         </div>
     )

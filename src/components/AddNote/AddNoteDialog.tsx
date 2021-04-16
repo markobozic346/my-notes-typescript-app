@@ -43,25 +43,65 @@ interface Props {
     handleClose: () => void,
 
 }
-
+interface newNoteType {
+    title: string,
+    tags: string[],
+    description: string,
+}
 const AddNoteDialog = (props: Props) => {
     //states
-    const [title, setTitle] = useState<String>('');
-    const [tags, setTags] = useState<String>('');
-    const [description, setDescription] = useState<String>('');
 
+    const [newNote, setNewNote] = useState<newNoteType>({
+        title: '',
+        tags: [],
+        description: '',
+    })
 
+    // temporary state
+    const [tags, setTags] = useState<string>('');
+
+    console.log(newNote)
     // handle input functions
-    const handleTitleChange = (value: String) => {
-        setTitle(value);
+    const handleTitleChange = (value: string) => {
+        setNewNote({ ...newNote, title: value });
     }
 
-    const handleTagsChange = (value: String) => {
-        setTags(value);
+    const handleTagsChange = (value: string) => {
+        // set value to temporary tags state 
+        setTags(`${value},`)
     }
 
-    const handleDescriptionChange = (value: String) => {
-        setDescription(value)
+    const handleDescriptionChange = (value: string) => {
+        setNewNote({ ...newNote, description: value })
+    }
+
+    const makeArray = (tags: string) => {
+        let wordStart: number = 0;
+        let arrayOfTags: string[] = [];
+        let tempTags: string = tags;
+        for(let i = 0; i < tempTags.length; i++){
+            // detect coma in string
+            if(tempTags[i] === ','){
+                //deletes first coma
+                tempTags = tempTags.replace(',','');
+                //slice word before coma
+                let slicedWord = tempTags.slice( wordStart, i)
+                // delete whitespaces from word and push it into array
+                arrayOfTags.push(slicedWord.trim());
+                wordStart = i;
+            }
+        }
+        return arrayOfTags;
+    }
+
+    const handleAddNote = () => {
+        // check if input fields are empty
+
+        // get tags from temp string to array
+        setNewNote({...newNote,
+            tags: makeArray(tags)});
+
+            //dispatch to store
     }
     const classes = useStyles()
     return (
@@ -77,7 +117,7 @@ const AddNoteDialog = (props: Props) => {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button>Add</Button>
+                    <Button onClick={handleAddNote}>Add</Button>
                     <Button onClick={props.handleClose}>Close</Button>
                 </DialogActions>
 

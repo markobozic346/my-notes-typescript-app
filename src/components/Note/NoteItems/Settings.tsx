@@ -11,7 +11,6 @@ const useStyles = makeStyles({
     }
 })
 interface Props {
-
 }
 
 const Settings: React.FC = (props: Props) => {

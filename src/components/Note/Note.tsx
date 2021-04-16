@@ -40,7 +40,7 @@ const Notes = ({id,title,tags,description}: Props) => {
                 <Title title={title}/>
                 <Tags tags={tags}/>
                 <Description description={description}/>
-                <Settings/>
+                <Settings />
             </Paper>
     )
 }

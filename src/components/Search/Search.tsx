@@ -61,7 +61,6 @@ const Search = (props: Props) => {
 
     const [keywords, setKeywords] = useState<String>('');
     const [tags, setTags] = useState<String[]>([])
-    console.log(keywords);
     return (
         <div className={classes.searchContainer}>
             <TextField onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { setKeywords(e.target.value) }}

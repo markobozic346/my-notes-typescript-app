@@ -20,7 +20,6 @@ const NotesContainer = (props: Props) => {
 
     // get data from redux store
     const notes = useSelector<selectorType, StateType['notes']>((state) => {
-        console.log(state.noteReducer)
         return state.noteReducer.notes
     })
     

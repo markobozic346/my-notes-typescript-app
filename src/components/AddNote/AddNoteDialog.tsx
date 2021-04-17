@@ -6,6 +6,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar'
 
 const useStyles = makeStyles({
 
@@ -50,42 +51,42 @@ interface newNoteType {
 }
 const AddNoteDialog = (props: Props) => {
     //states
-
+    const [open, setOpen] = React.useState(false);
     const [newNote, setNewNote] = useState<newNoteType>({
         title: '',
         tags: [],
         description: '',
     })
 
-    // temporary state
+    // temporary tag state
     const [tags, setTags] = useState<string>('');
 
-    console.log(newNote)
     // handle input functions
     const handleTitleChange = (value: string) => {
         setNewNote({ ...newNote, title: value });
     }
-
     const handleTagsChange = (value: string) => {
         // set value to temporary tags state 
         setTags(`${value},`)
     }
-
     const handleDescriptionChange = (value: string) => {
         setNewNote({ ...newNote, description: value })
     }
-
+    // close error message when 
+    const handleClose = () => {
+        setOpen(false);
+    };
     const makeArray = (tags: string) => {
         let wordStart: number = 0;
         let arrayOfTags: string[] = [];
         let tempTags: string = tags;
-        for(let i = 0; i < tempTags.length; i++){
+        for (let i = 0; i < tempTags.length; i++) {
             // detect coma in string
-            if(tempTags[i] === ','){
+            if (tempTags[i] === ',') {
                 //deletes first coma
-                tempTags = tempTags.replace(',','');
+                tempTags = tempTags.replace(',', '');
                 //slice word before coma
-                let slicedWord = tempTags.slice( wordStart, i)
+                let slicedWord = tempTags.slice(wordStart, i)
                 // delete whitespaces from word and push it into array
                 arrayOfTags.push(slicedWord.trim());
                 wordStart = i;
@@ -96,12 +97,21 @@ const AddNoteDialog = (props: Props) => {
 
     const handleAddNote = () => {
         // check if input fields are empty
+        if (newNote.title !== '' && newNote.description !== '' && tags !== '') {
 
-        // get tags from temp string to array
-        setNewNote({...newNote,
-            tags: makeArray(tags)});
+            // get tags from temp state string to array & add to actual state
+            setNewNote({
+                ...newNote,
+                tags: makeArray(tags)
+            });
+        } else {
+            //display error message
+            setOpen(true);
 
-            //dispatch to store
+        }
+
+
+        //dispatch to store
     }
     const classes = useStyles()
     return (
@@ -111,9 +121,12 @@ const AddNoteDialog = (props: Props) => {
                 <DialogContent className={classes.dialogCenterContent} >
                     <DialogContentText>Fill fields with details</DialogContentText>
 
-                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTitleChange(e.target.value) }} className={classes.inputFields} label='note title' />
-                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTagsChange(e.target.value) }} className={classes.inputFields} label='tags (separate tags with coma)' />
-                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleDescriptionChange(e.target.value) }} className={classes.inputFields} label='description' />
+                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTitleChange(e.target.value) }}
+                        value={newNote.title} className={classes.inputFields} label='note title' />
+                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTagsChange(e.target.value) }}
+                        value={tags} className={classes.inputFields} label='tags (separate tags with coma)' />
+                    <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleDescriptionChange(e.target.value) }}
+                        value={newNote.description} className={classes.inputFields} label='description' />
                 </DialogContent>
 
                 <DialogActions>
@@ -122,7 +135,18 @@ const AddNoteDialog = (props: Props) => {
                 </DialogActions>
 
             </Dialog>
-
+            {/* Error message */}
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={open}
+                autoHideDuration={4000}
+                message={
+                    "Error, fields can't be empty"}
+                onClose={handleClose}
+            />
         </div>
     )
 }

@@ -7,7 +7,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { makeStyles } from '@material-ui/styles';
 import { Button, TextField } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { addNote } from '../../actions/actions'
 const useStyles = makeStyles({
 
     inputFields: {
@@ -50,6 +51,9 @@ interface newNoteType {
     description: string,
 }
 const AddNoteDialog = (props: Props) => {
+
+    const dispatch = useDispatch();
+
     //states
     const [open, setOpen] = React.useState(false);
     const [newNote, setNewNote] = useState<newNoteType>({
@@ -92,8 +96,11 @@ const AddNoteDialog = (props: Props) => {
                 wordStart = i;
             }
         }
+
         return arrayOfTags;
     }
+
+
 
     const handleAddNote = () => {
         // check if input fields are empty
@@ -104,6 +111,10 @@ const AddNoteDialog = (props: Props) => {
                 ...newNote,
                 tags: makeArray(tags)
             });
+
+            //dispatch to store
+
+            dispatch(addNote(newNote.title, newNote.tags, newNote.description))
         } else {
             //display error message
             setOpen(true);
@@ -111,7 +122,6 @@ const AddNoteDialog = (props: Props) => {
         }
 
 
-        //dispatch to store
     }
     const classes = useStyles()
     return (
@@ -124,7 +134,7 @@ const AddNoteDialog = (props: Props) => {
                     <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTitleChange(e.target.value) }}
                         value={newNote.title} className={classes.inputFields} label='note title' />
                     <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleTagsChange(e.target.value) }}
-                        value={tags} className={classes.inputFields} label='tags (separate tags with coma)' />
+                        className={classes.inputFields} label='tags (separate tags with coma)' />
                     <TextField onChange={(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { handleDescriptionChange(e.target.value) }}
                         value={newNote.description} className={classes.inputFields} label='description' />
                 </DialogContent>

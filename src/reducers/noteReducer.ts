@@ -29,12 +29,23 @@ const initialState = {
   ],
 };
 export const noteReducer = (
-  state: StateType  = initialState,
-  action: ActionType 
+  state: StateType = initialState,
+  action: ActionType
 ) => {
   switch (action.type) {
     case "ADD_NOTE":
-      return state;
+      console.log(action.payload.tags);
+      return {
+        ...state,
+        notes: [
+          ...state.notes,
+          {
+            title: action.payload.title,
+            tags: action.payload.tags,
+            description: action.payload.description,
+          },
+        ],
+      };
 
     case "REMOVE_NOTE":
       return state;

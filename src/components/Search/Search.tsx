@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from 'react'
-import { TextField, Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
-import { StringDecoder } from 'node:string_decoder';
-
+import { useDispatch } from 'react-redux'
+import { addSearchKeywords } from '../../actions/actions'
 const useStyles = makeStyles({
     searchContainer: {
         textAlign: 'center',
@@ -44,12 +44,7 @@ const useStyles = makeStyles({
 
 
 
-const handleKeywordsChange = (value: String) => {
 
-}
-const handleTagsChange = (value: String) => {
-
-}
 
 interface Props {
 
@@ -58,15 +53,31 @@ interface Props {
 const Search = (props: Props) => {
     const classes = useStyles();
 
+    const dispatch = useDispatch();
 
-    const [keywords, setKeywords] = useState<String>('');
-    const [tags, setTags] = useState<String[]>([])
+
+    const [keywords, setKeywords] = useState<string>('');
+    const [tags, setTags] = useState<string>('')
+
+
+
+    const handleKeywordsChange = (value: string) => {
+        setKeywords(value);
+        dispatchSearchKeywords();
+    }
+    const handleTagsChange = (value: string) => {
+        setTags(value)
+        dispatchSearchKeywords();
+    }
+    const dispatchSearchKeywords = () => {
+        dispatch(addSearchKeywords(keywords, tags))
+    }
     return (
         <div className={classes.searchContainer}>
-            <TextField onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { setKeywords(e.target.value) }}
+            <TextField onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { handleKeywordsChange(e.target.value) }}
                 value={keywords}
                 id='standard-basic btn1' label='keywords' className={classes.Input} />
-                
+
             <TextField onChange={(e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => { handleTagsChange(e.target.value) }}
                 id='standard-basic btn2' label='tags' className={classes.Input} />
         </div>

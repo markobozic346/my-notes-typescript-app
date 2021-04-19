@@ -115,6 +115,8 @@ const AddNoteDialog = (props: Props) => {
             //dispatch to store
 
             dispatch(addNote(newNote.title, newNote.tags, newNote.description))
+
+            
         } else {
             //display error message
             setOpen(true);

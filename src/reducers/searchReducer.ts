@@ -1,4 +1,4 @@
-interface SearchStateType {
+export interface SearchStateType {
   keywords: string;
   tags: string;
 }
@@ -20,6 +20,7 @@ export const searchReducer = (
 ) => {
   switch (action.type) {
     case "ADD_SEARCH_KEYWORDS":
+      
       return {
         ...state,
         keywords: action.payload.keywords,

@@ -28,7 +28,6 @@ const NotesContainer = (props: Props) => {
         return state.noteReducer.notes
     })
     const searchKeywords = useSelector<searchSelectorType, string>(state => {
-
         return state.searchReducer.keywords
     })
     const searchTags = useSelector<searchSelectorType, string>(state => {
@@ -36,12 +35,33 @@ const NotesContainer = (props: Props) => {
     })
 
 
+    const SearchThroughtNotes = (notes: StateType['notes'], searchKeywords: string, searchTags: string) => {
+        let tempFilteredArray: StateType['notes'] = [];
+        if (searchKeywords !== '') {
+            notes.map((note) => {
+                if (note.description.includes(searchKeywords)) {
+                    tempFilteredArray.push(note);
+                }
+            })
+        }
+        if (searchTags !== '') {
+            notes.map(note => {
+                if (note.tags.includes(searchTags)) {
+                    tempFilteredArray.push(note);
+                }
+            })
+        }
+        if (searchKeywords === '' && searchTags === '') {
+            tempFilteredArray = [...notes]
+        }
 
-
+        return tempFilteredArray;
+    }
+    let newFilteredArray = SearchThroughtNotes(notes, searchKeywords, searchTags);
     return (
         <div className={classes.notesContainer}>
 
-            {notes.map((note, index) => (<Note key={index} id={note.id} title={note.title} tags={note.tags} description={note.description} />))}
+            {newFilteredArray.map((note, index) => (<Note key={index} id={note.id} title={note.title} tags={note.tags} description={note.description} />))}
 
         </div>
     )

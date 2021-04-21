@@ -46,9 +46,11 @@ const NotesContainer = (props: Props) => {
         }
         if (searchTags !== '') {
             notes.map(note => {
-                if (note.tags.includes(searchTags)) {
-                    tempFilteredArray.push(note);
-                }
+                note.tags.map(tag => {
+                    if (tag.includes(searchTags)) {
+                        tempFilteredArray.push(note);
+                    }
+                })
             })
         }
         if (searchKeywords === '' && searchTags === '') {

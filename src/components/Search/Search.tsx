@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux'
@@ -59,15 +59,17 @@ const Search = (props: Props) => {
     const [keywords, setKeywords] = useState<string>('');
     const [tags, setTags] = useState<string>('')
 
-
+    useEffect(() => {
+        dispatchSearchKeywords();
+    }, [keywords, tags])
 
     const handleKeywordsChange = (value: string) => {
         setKeywords(value);
-        dispatchSearchKeywords();
+
     }
     const handleTagsChange = (value: string) => {
         setTags(value)
-        dispatchSearchKeywords();
+
     }
     const dispatchSearchKeywords = () => {
         dispatch(addSearchKeywords(keywords, tags))

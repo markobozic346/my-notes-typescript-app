@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core/styles'
 //import components
 import Title from './NoteItems/Title'
 import Description from './NoteItems/Description'
-import Settings from './NoteItems/Settings'
 import Tags from './NoteItems/Tags'
+import RemoveNote from './NoteItems/RemoveNote'
 // styling
 
 const useStyles = makeStyles({
@@ -41,7 +41,7 @@ const Notes = ({ id, title, tags, description }: Props) => {
             <Title title={title} />
             <Tags tags={tags} />
             <Description description={description} />
-            <Settings id={id} />
+            <RemoveNote id={id} />
 
         </Paper>
     )

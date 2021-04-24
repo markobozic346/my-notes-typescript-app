@@ -7,6 +7,7 @@ export interface StateType {
 interface ActionType {
   type: string;
   payload: {
+    id?: number;
     title?: string;
     tags?: string[];
     description?: string;
@@ -34,7 +35,6 @@ export const noteReducer = (
 ) => {
   switch (action.type) {
     case "ADD_NOTE":
-      console.log(action.payload.tags);
       return {
         ...state,
         notes: [
@@ -48,8 +48,10 @@ export const noteReducer = (
       };
 
     case "REMOVE_NOTE":
-      return state;
-
+      return {
+        ...state,
+        notes: state.notes.filter((note) => note.id !== action.payload.id),
+      };
     case "UPDATE_NOTE":
       return state;
 

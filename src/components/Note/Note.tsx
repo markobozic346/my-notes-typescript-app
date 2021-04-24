@@ -19,29 +19,31 @@ const useStyles = makeStyles({
         height: '150px',
         backgroundColor: '#FFFF99',
     }
-    
+
 })
 
 
 interface Props {
-id: number,
-title: string,
-tags: string[],
-description: string,
+    id: number,
+    title: string,
+    tags: string[],
+    description: string,
 }
 
-const Notes = ({id,title,tags,description}: Props) => {
+const Notes = ({ id, title, tags, description }: Props) => {
     const classes = useStyles()
-    
-    
+
+
 
     return (
-            <Paper className={classes.note} elevation={3}>
-                <Title title={title}/>
-                <Tags tags={tags}/>
-                <Description description={description}/>
-                <Settings />
-            </Paper>
+
+        <Paper className={classes.note} elevation={3}>
+            <Title title={title} />
+            <Tags tags={tags} />
+            <Description description={description} />
+            <Settings id={id} />
+
+        </Paper>
     )
 }
 

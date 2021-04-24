@@ -59,6 +59,7 @@ const NotesContainer = (props: Props) => {
 
         return tempFilteredArray;
     }
+
     let newFilteredArray = SearchThroughtNotes(notes, searchKeywords, searchTags);
     return (
         <div className={classes.notesContainer}>

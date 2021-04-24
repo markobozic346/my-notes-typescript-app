@@ -3,6 +3,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles'
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { removeNote } from '../../../actions/actions'
+import { useDispatch } from 'react-redux';
+
 const useStyles = makeStyles({
     description: {
         position: 'relative',
@@ -11,12 +14,19 @@ const useStyles = makeStyles({
     }
 })
 interface Props {
+    id: number;
 }
 
-const Settings: React.FC = (props: Props) => {
+const Settings = ({ id }: Props) => {
+
+    const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = useState<EventTarget & SVGSVGElement | null>(null);
     const [isClicked, setIsClicked] = useState(false);
 
+    const handleRemoveNote = () => {
+        dispatch(removeNote(id))
+    }
     const classes = useStyles()
     return (<>
         <ExpandMoreIcon className={classes.description} aria-controls="more-menu"
@@ -53,10 +63,11 @@ const Settings: React.FC = (props: Props) => {
             <MenuItem
                 onClick={() => {
                     setAnchorEl(null);
+                    handleRemoveNote()
                 }}
             >
 
-                Delete
+                Remove
             </MenuItem>
         </Menu>
     </>

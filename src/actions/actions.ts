@@ -18,3 +18,12 @@ export const addSearchKeywords = (keywords: string, tags: string) => {
     },
   };
 };
+
+export const removeNote = (id: number) => {
+  return {
+    type: "REMOVE_NOTE",
+    payload: {
+      id,
+    },
+  };
+};

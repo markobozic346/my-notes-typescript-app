@@ -19,7 +19,7 @@ const Tags = ({ tags }: Props) => {
     return (
         <Typography className={classes.tags}>
 
-            {tags && tags.map(tag => (` ${tag}, `))}
+            {tags.map(tag => (` ${tag}, `))}
         </Typography>
     )
 }

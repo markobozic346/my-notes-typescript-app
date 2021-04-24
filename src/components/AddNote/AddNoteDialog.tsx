@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -60,8 +60,17 @@ const AddNoteDialog = (props: Props) => {
         title: '',
         tags: [],
         description: '',
-    })
+    });
 
+    const [isClicked, setIsClicked] = useState(false);
+
+
+    useEffect(() => {
+        // if prevents dispathing on initial render
+        if (newNote.title !== '' && newNote.description !== '') {
+            dispatch(addNote(newNote.title, newNote.tags, newNote.description))
+        }
+    }, [isClicked])
     // temporary tag state
     const [tags, setTags] = useState<string>('');
 
@@ -70,13 +79,13 @@ const AddNoteDialog = (props: Props) => {
         setNewNote({ ...newNote, title: value });
     }
     const handleTagsChange = (value: string) => {
-        // set value to temporary tags state 
+
         setTags(`${value},`)
     }
     const handleDescriptionChange = (value: string) => {
         setNewNote({ ...newNote, description: value })
     }
-    // close error message when 
+    // close error message
     const handleClose = () => {
         setOpen(false);
     };
@@ -112,16 +121,17 @@ const AddNoteDialog = (props: Props) => {
                 tags: makeArray(tags)
             });
 
-            //dispatch to store
+            //triggers useEffect, which calls fetch
+            //reason is to have latest state update
+            setIsClicked(!isClicked)
 
-            dispatch(addNote(newNote.title, newNote.tags, newNote.description))
-
-            
         } else {
             //display error message
             setOpen(true);
-
         }
+
+    }
+    const handleDispatch = (title: string, tags: string[], description: string) => {
 
 
     }

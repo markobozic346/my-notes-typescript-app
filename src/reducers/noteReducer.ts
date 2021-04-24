@@ -1,5 +1,7 @@
 import Notes from "../components/Note/Note";
 
+let initialID = 3;
+
 export interface StateType {
   notes: { id: number; title: string; tags: string[]; description: string }[];
 }
@@ -40,6 +42,7 @@ export const noteReducer = (
         notes: [
           ...state.notes,
           {
+            id: initialID++,
             title: action.payload.title,
             tags: action.payload.tags,
             description: action.payload.description,

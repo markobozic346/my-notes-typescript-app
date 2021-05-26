@@ -1,12 +1,10 @@
 # my notes typescript app
 
-Project created with react/redux, typescript, material UI, and local storage
+Project created with react,redux and typescript
 
 ## About project
-
-Main idea with this project is to use typescript for first time, also to help me have all notes on one place with easy search.
+Simple browser notebook project with live search 
 
 ### Check live
 
-SOON
-
+https://my-notes-typescript-app.netlify.app/
